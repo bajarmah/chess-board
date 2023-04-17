@@ -1,0 +1,10 @@
+.current-turn {
+  background-color: lightgray;
+}
+
+.board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

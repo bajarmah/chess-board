@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row text-center">
+    <div class="col">
+      <h1>Main Board Component</h1>
+      <br />
+      <p>Click on the board to start a game</p>
+    </div>
+  </div>
+  <div class="row">
+    <div
+      class="col-12 col-xl-6 board-container"
+      [ngClass]="{ 'current-turn': isPlayerOnesTurn }"
+    >
+      <ngx-chess-board
+        #board1
+        (moveChange)="playerOneMoveCompleted($event)"
+        [dragDisabled]="!isPlayerOnesTurn"
+        [darkDisabled]="true"
+        [drawDisabled]="true"
+      ></ngx-chess-board>
+      <p *ngIf="isPlayerOnesTurn">Player One's Turn</p>
+    </div>
+    <div
+      class="col-12 col-xl-6 board-container"
+      [ngClass]="{ 'current-turn': isPlayerTwosTurn }"
+    >
+      <ngx-chess-board
+        #board2
+        (moveChange)="playerTwoMoveCompleted($event)"
+        [dragDisabled]="!isPlayerTwosTurn"
+        [lightDisabled]="true"
+        [drawDisabled]="true"
+      ></ngx-chess-board>
+      <p *ngIf="isPlayerTwosTurn">Player Two's Turn</p>
+    </div>
+  </div>
+  <div class="row text-center mt-5" *ngIf="isGameFinished">
+    <div class="col">
+      <h1>{{ this.endgameMessage }}</h1>
+      <button class="btn btn-primary" (click)="onResetGame()">Reset</button>
+    </div>
+  </div>
+</div>
